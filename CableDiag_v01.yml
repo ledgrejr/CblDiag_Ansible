@@ -8,11 +8,17 @@
     ansible_python_interpreter: /usr/bin/python
   tasks:
 
+    - name: ping tests
+      shell: ping -c 1 {{ansible_host}}
+      ignore_errors: true
+      register: ping
+
     - name: Execute Cable diagnostics
       cli_command:
         command: test cable-diagnostics {{ports}}
         prompt: Continue (y/n)?
         answer: y
+      when: ping.stdout.find('1 received')!= -1
 
     - name: Pause for 10 seconds for completion of diagnostics
       pause:
@@ -29,6 +35,7 @@
         - "show cable-diagnostics {{ports}}"
         - "show interface brief"
         - "show power-over-ethernet brief"
+      when: ping.stdout.find('1 received')!= -1
 
     - name: Output to file
       copy:
@@ -69,13 +76,19 @@
     ansible_python_interpreter: /usr/bin/python
   tasks:
 
+    - name: ping tests
+      shell: ping -c 1 {{ansible_host}}
+      ignore_errors: true
+      register: ping
+
     - name: Execute Cable diagnostics
       cli_command:
         command: test cable-diagnostics {{ports}}
         prompt: Continue (y/n)?
         answer: y
+      when: ping.stdout.find('1 received')!= -1
 
-    - name: Pause for 30 seconds for completion of diagnostics
+    - name: Pause for 120 seconds for completion of diagnostics
       pause:
         prompt: "Waiting for completion"
         seconds: 120
@@ -90,6 +103,7 @@
         - "show cable-diagnostics {{ports}}"
         - "show interface brief"
         - "show power-over-ethernet brief"
+      when: ping.stdout.find('1 received')!= -1
 
     - name: Output to file
       copy:
