@@ -1,7 +1,7 @@
 central INV Creation:
     B: FIXED: MDF ports are showing only swithc 1
-    F: Add info output to show progeress
-    F: have it write file to proper folder
+    F: ADDED: Add info output to show progeress
+    F: ADDED: have it write file to proper folder
 
 IMC INV: 
     F: Needs to be created
@@ -9,7 +9,9 @@ IMC INV:
 CD Playbook:
     F: WIP: add ping to validate device is up
         Needs: Streamline with include_task option and have mdf/idf playbook ran if ping returns 
-    B: Getting not authorised on MDF cable diag
+
 
 Reports:
     F: LLDP reporting on script 
+    F: ADDED POE status on reports 
+    F: OUI lookup for MAC
