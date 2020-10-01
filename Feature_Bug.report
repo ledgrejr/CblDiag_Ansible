@@ -13,5 +13,5 @@ CD Playbook:
 
 Reports:
     F: LLDP reporting on script 
-    F: ADDED POE status on reports 
-    F: OUI lookup for MAC
+    F: ADDED : POE status on reports 
+    F: ADDED : OUI lookup for MAC
