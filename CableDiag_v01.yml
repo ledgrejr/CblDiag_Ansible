@@ -1,0 +1,117 @@
+---
+- hosts: mdf
+  vars:
+    ansible_connection: network_cli
+    ansible_network_os: arubaoss
+    ansible_user: <USERNAME>
+    ansible_password: <PASSWORD>
+    ansible_python_interpreter: /usr/bin/python
+  tasks:
+
+    - name: Execute Cable diagnostics
+      cli_command:
+        command: test cable-diagnostics {{ports}}
+        prompt: Continue (y/n)?
+        answer: y
+
+    - name: Pause for 10 seconds for completion of diagnostics
+      pause:
+        prompt: "Waiting for completion"
+        seconds: 10
+
+    - name: Execute other switchinfo
+      cli_command:
+        command: "{{ item }}"
+      register: SwitchData
+      with_items:
+        - "show mac-address"
+        - "show interface"
+        - "show cable-diagnostics {{ports}}"
+        - "show interface brief"
+        - "show power-over-ethernet brief"
+
+    - name: Output to file
+      copy:
+        content: "{{SwitchData.results[0]}}"
+        dest: "Results/{{inventory_hostname}}.macaddress"
+
+    - name: Output to file
+      copy:
+        content: "{{SwitchData.results[1]}}"
+        dest: "Results/{{inventory_hostname}}.interface"
+
+    - name: Output to file
+      copy:
+        content: "{{SwitchData.results[2]}}"
+        dest: "Results/{{inventory_hostname}}.cable"
+
+    - name: Output to file
+      copy:
+        content: "{{SwitchData.results[3]}}"
+        dest: "Results/{{inventory_hostname}}.interfacebrie"
+
+    - name: Output to file
+      copy:
+        content: "{{SwitchData.results[4]}}"
+        dest: "Results/{{inventory_hostname}}.poe"
+
+    - name: Pause for 30 seconds for MDF to stabilize
+      pause:
+        prompt: "Waiting for completion"
+        seconds: 30
+      
+- hosts: idf
+  vars:
+    ansible_connection: network_cli
+    ansible_network_os: arubaoss
+    ansible_user: <USERNAME>
+    ansible_password: <PASSWORD>
+    ansible_python_interpreter: /usr/bin/python
+  tasks:
+
+    - name: Execute Cable diagnostics
+      cli_command:
+        command: test cable-diagnostics {{ports}}
+        prompt: Continue (y/n)?
+        answer: y
+
+    - name: Pause for 30 seconds for completion of diagnostics
+      pause:
+        prompt: "Waiting for completion"
+        seconds: 120
+
+    - name: Execute other switchinfo
+      cli_command:
+        command: "{{ item }}"
+      register: SwitchData
+      with_items:
+        - "show mac-address"
+        - "show interface"
+        - "show cable-diagnostics {{ports}}"
+        - "show interface brief"
+        - "show power-over-ethernet brief"
+
+    - name: Output to file
+      copy:
+        content: "{{SwitchData.results[0]}}"
+        dest: "Results/{{inventory_hostname}}.macaddress"
+
+    - name: Output to file
+      copy:
+        content: "{{SwitchData.results[1]}}"
+        dest: "Results/{{inventory_hostname}}.interface"
+
+    - name: Output to file
+      copy:
+        content: "{{SwitchData.results[2]}}"
+        dest: "Results/{{inventory_hostname}}.cable"
+
+    - name: Output to file
+      copy:
+        content: "{{SwitchData.results[3]}}"
+        dest: "Results/{{inventory_hostname}}.interfacebrie"
+
+    - name: Output to file
+      copy:
+        content: "{{SwitchData.results[4]}}"
+        dest: "Results/{{inventory_hostname}}.poe"
