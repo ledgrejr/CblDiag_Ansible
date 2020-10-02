@@ -36,10 +36,16 @@ __status__ = "Testing"
 def getraw(rawdata):
     # print (rawdata['stdout_lines'])
     #print (rawdata['skipped'])
-    if rawdata['skipped'] == True:
-        return ("skipped")
-    else: 
+    try:
         return((rawdata['stdout_lines']))
+    except:
+        try:
+            if rawdata['skipped'] == True:
+                return ("skipped")
+        except: 
+            print ('[*] ****rawdata issue*****')
+            exit()
+
 
 
 # create Dict from raw cable diagnostic data
