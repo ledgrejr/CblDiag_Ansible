@@ -355,8 +355,10 @@ for idf in idf_lst:
             poe_dict = poe_parse(poeraw)
     except:
         print ("filenotfound")
-    
-    final_dict[idf] = combine_dict(cabldict,macadd_dict,int_dict,int_brief_dict,poe_dict)
+    try:
+        final_dict[idf] = combine_dict(cabldict,macadd_dict,int_dict,int_brief_dict,poe_dict)
+    except:
+        print ('[-] Missing data for {}'.format(idf))
 
 for mdf in mdf_lst:
     mac_table = None
