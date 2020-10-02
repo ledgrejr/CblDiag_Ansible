@@ -1,7 +1,12 @@
+#!/usr/bin/env python3
+
+import os
+import sys
+vendor_dir = os.path.join('../', 'py_libs/')
+
 import requests
 import json
 import configparser
-import sys
 import ast
 import argparse
 import getpass

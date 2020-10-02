@@ -1,5 +1,9 @@
 #!/bin/usr/env python3
 
+import os
+import sys
+vendor_dir = os.path.join('../', 'py_libs/')
+sys.path.append(vendor_dir)
 import yaml 
 import json
 import csv
