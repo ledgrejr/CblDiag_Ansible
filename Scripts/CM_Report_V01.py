@@ -299,18 +299,18 @@ for idfs in (inv_dict['children']['idf']['hosts']):
 for mdfs in (inv_dict['children']['mdf']['hosts']):
     mdf_lst.append(mdfs)
 for idf in idf_lst:
-    try:
-        filename = results_folder + idf + '.cable'
-        print(filename)
-        with open(filename, 'r') as idffile:
-            cableraw = getraw(json.loads(idffile.read()))
-        if cableraw == 'skipped':
-            print ('[-] Cable Test skipped for {}'.format (idf))
-            break
-        else:
-            cabldict = cbldiag_parse(cableraw)
-    except:
-        print ("filenotfound")
+    #try:
+    filename = results_folder + idf + '.cable'
+    print(filename)
+    with open(filename, 'r') as idffile:
+        cableraw = getraw(json.loads(idffile.read()))
+    if cableraw == 'skipped':
+        print ('[-] Cable Test skipped for {}'.format (idf))
+        break
+    else:
+        cabldict = cbldiag_parse(cableraw)
+    #except:
+    #    print ("filenotfound")
     try:
         filename = results_folder + idf + '.interface'
         print(filename)
