@@ -301,6 +301,7 @@ for mdfs in (inv_dict['children']['mdf']['hosts']):
 for idf in idf_lst:
     try:
         filename = results_folder + idf + '.cable'
+        print(filename)
         with open(filename, 'r') as idffile:
             cableraw = getraw(json.loads(idffile.read()))
         if cableraw == 'skipped':
@@ -312,6 +313,7 @@ for idf in idf_lst:
         print ("filenotfound")
     try:
         filename = results_folder + idf + '.interface'
+        print(filename)
         with open(filename, 'r') as idffile:
             interfaceraw = getraw(json.loads(idffile.read()))
         if interfaceraw == 'skipped':
@@ -323,6 +325,7 @@ for idf in idf_lst:
         print ("filenotfound")
     try:
         filename = results_folder + idf + '.interfacebrie'
+        print(filename)
         with open(filename, 'r') as idffile:
             intbriraw = getraw(json.loads(idffile.read()))
         if intbriraw == 'skipped':
