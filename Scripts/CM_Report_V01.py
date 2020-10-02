@@ -281,10 +281,10 @@ args = parser.parse_args()
 inv_file = args.invintory
 if args.file:
     rep_file = '../Reports/' + args.file
-    raw_file = '../Reports/Raw' + args.file + 'raw.json'
+    raw_file = '../Reports/Raw/' + args.file + 'raw.json'
 else:
     rep_file = '../Reports/' + inv_file.replace('.yml','.csv')
-    raw_file = '../Reports/Raw' + inv_file.replace('.yml','raw.json')
+    raw_file = '../Reports/Raw/' + inv_file.replace('.yml','raw.json')
 
 inv_path = inv_folder + inv_file
 try:
@@ -436,3 +436,4 @@ with open(raw_file,'w') as y:
     y.write(json.dumps(final_dict,indent=2))
 
 csvstarter(final_dict,rep_file)
+print ('[+] Data file written to Reports dir. filename = {}'.format(rep_file) 

@@ -363,8 +363,11 @@ if args.groupfile:
                 attip = get_4093ip(host,swinfo[x],token)
                 swinfo[x]['ip'] = attip
 
-    output_file = '../Inv/' + args.file 
-
+    if '.yml' in args.file:
+        output_file = '../Inv/' + args.file 
+    else:
+        output_file = '../Inv/' + args.file + '.yml'
+        
     print('[+] Pushing Data for YAML file creation')
     outputdata = ymlmaker(mdfsw,idfsw)
     with open(output_file, 'w') as writefile:
