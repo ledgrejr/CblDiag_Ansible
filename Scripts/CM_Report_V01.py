@@ -35,7 +35,7 @@ __status__ = "Testing"
 # pull raw data from ansible output
 def getraw(rawdata):
     # print (rawdata['stdout_lines'])
-    print (rawdata['skipped'])
+    #print (rawdata['skipped'])
     if rawdata['skipped'] == True:
         return ("skipped")
     else: 
