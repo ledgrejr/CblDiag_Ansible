@@ -36,7 +36,7 @@ __status__ = "Testing"
 def getraw(rawdata):
     # print (rawdata['stdout_lines'])
     print (rawdata['skipped'])
-    if rawdata['skipped'] == 'true':
+    if rawdata['skipped'] == True:
         return ("skipped")
     else: 
         return((rawdata['stdout_lines']))
