@@ -20,20 +20,27 @@ import yaml
 
 
 '''
-TODO notes:
-
-Adjust logging 
-Add store validation 
+Versioning: 
+    1.0 Inital script 
+    1.1 added cmd options for inv and report files 
+    
 '''
+############################################################################################
+#Script to generate YML invintory from Central APIS
+#
+#
+############################################################################################
 
 __author__ = "Jay McNealy"
 __copyright__ = "None"
 __credits__ = ["Jay McNealy"]
 __license__ = "GPL"
-__version__ = "1.0"
+__version__ = "1.1"
 __maintainer__ = "Jay McNealy"
 __email__ = "justin.mcnealy@hpe.com"
 __status__ = "Testing"
+############################################################################################
+
 
 # Logging
 def init_logging():
@@ -367,7 +374,7 @@ if args.groupfile:
         output_file = '../Inv/' + args.file 
     else:
         output_file = '../Inv/' + args.file + '.yml'
-        
+
     print('[+] Pushing Data for YAML file creation')
     outputdata = ymlmaker(mdfsw,idfsw)
     with open(output_file, 'w') as writefile:
