@@ -436,4 +436,4 @@ with open(raw_file,'w') as y:
     y.write(json.dumps(final_dict,indent=2))
 
 csvstarter(final_dict,rep_file)
-print ('[+] Data file written to Reports dir. filename = {}'.format(rep_file) 
+print ('[+] Data file written to Reports dir. filename = {}'.format(rep_file)) 
