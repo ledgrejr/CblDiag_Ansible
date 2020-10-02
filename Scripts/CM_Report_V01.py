@@ -277,7 +277,6 @@ else:
     raw_file = '/Reports/Raw' + inv_file.replace('.yml','raw.json')
 
 inv_path = inv_folder + inv_file
-print (inv_path)
 try:
     with open(inv_path,'r') as file:
         devlst = yaml.load(file,Loader=yaml.FullLoader)
@@ -298,6 +297,7 @@ for mdfs in (inv_dict['children']['mdf']['hosts']):
 for idf in idf_lst:
     try:
         filename = results_folder + idf + '.cable'
+        print (filename)
         with open(filename, 'r') as idffile:
             cableraw = getraw(json.loads(idffile.read()))
     except:
