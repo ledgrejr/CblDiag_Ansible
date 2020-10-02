@@ -35,12 +35,11 @@ __status__ = "Testing"
 # pull raw data from ansible output
 def getraw(rawdata):
     # print (rawdata['stdout_lines'])
-    try:
+    if rawdata['skipped'] == 'true':
+        return ("skipped")
+    else: 
         return((rawdata['stdout_lines']))
-    except:
-        jsondata = json.loads(rawdata)
-        if jsondata['skipped'] == 'true':
-            return ("skipped")
+
 
 # create Dict from raw cable diagnostic data
 def cbldiag_parse(cbldata):
