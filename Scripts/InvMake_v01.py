@@ -299,7 +299,7 @@ parser = argparse.ArgumentParser(
 #group set up for further development
 group = parser.add_mutually_exclusive_group(required=True)
 group.add_argument("-g","--groupfile", help="Input file", type=str)
-parser.add_argument("-f","--file", help="filename to output json data *script will attach json extention", type=str)
+parser.add_argument("-f","--file", help="filename of output file. Will be stored in Inv directory", type=str, required=True)
 parser.add_argument("-v", help="Verbose Output", action="store_true")
 args = parser.parse_args()
 
@@ -363,10 +363,8 @@ if args.groupfile:
                 attip = get_4093ip(host,swinfo[x],token)
                 swinfo[x]['ip'] = attip
 
-    if args.file:
-        output_file = args.file 
-    else:
-        output_file = 'inv.yml'
+    output_file = '../Inv/' + args.file 
+
     print('[+] Pushing Data for YAML file creation')
     outputdata = ymlmaker(mdfsw,idfsw)
     with open(output_file, 'w') as writefile:
