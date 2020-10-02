@@ -276,6 +276,7 @@ else:
     raw_file = '/Reports/Raw' + inv_file.replace('.yml','raw.json')
 
 inv_path = results_folder + inv_file
+print (inv_path)
 try:
     with open(inv_path,'r') as file:
         devlst = yaml.load(file,Loader=yaml.FullLoader)
