@@ -252,7 +252,7 @@ def csvstarter(csvdata,rep_file):
 
 
 
-results_filder = 'Results/1777-r3/'
+results_folder = '../Results/'
 
 # Arg Parse Main start
 # Parse Command Line Arguments
@@ -262,21 +262,22 @@ parser = argparse.ArgumentParser(
 #group set up for further development
 group = parser.add_mutually_exclusive_group(required=True)
 group.add_argument("-i","--invintory", help="Input file", type=str)
-parser.add_argument("-f","--file", help="report filename if differant then inv file (csv will be appended)", type=str)
+parser.add_argument("-f","--file", help="report filename if differant then inv file", type=str)
 parser.add_argument("-v", help="Verbose Output", action="store_true")
 args = parser.parse_args()
 
 # gather files. If no output file is selected, will write with invintorey filename (as csv and raw.json)
 inv_file = args.invintory
 if args.file:
-    rep_file = '/Reports/' + args.file + '.csv'
+    rep_file = '/Reports/' + args.file
     raw_file = '/Reports/Raw' + args.file + 'raw.json'
 else:
     rep_file = '/Reports/' + inv_file.replace('.yml','.csv')
     raw_file = '/Reports/Raw' + inv_file.replace('.yml','raw.json')
-    
+
+inv_path = results_folder + inv_file
 try:
-    with open(inv_file,'r') as file:
+    with open(inv_path,'r') as file:
         devlst = yaml.load(file,Loader=yaml.FullLoader)
 except:
     print ("[*] Error Could not find invintory file")
