@@ -253,6 +253,7 @@ def csvstarter(csvdata,rep_file):
 
 
 results_folder = '../Results/'
+inv_folder = '../Inv/'
 
 # Arg Parse Main start
 # Parse Command Line Arguments
@@ -275,7 +276,7 @@ else:
     rep_file = '/Reports/' + inv_file.replace('.yml','.csv')
     raw_file = '/Reports/Raw' + inv_file.replace('.yml','raw.json')
 
-inv_path = results_folder + inv_file
+inv_path = inv_folder + inv_file
 print (inv_path)
 try:
     with open(inv_path,'r') as file:
@@ -296,31 +297,31 @@ for mdfs in (inv_dict['children']['mdf']['hosts']):
     mdf_lst.append(mdfs)
 for idf in idf_lst:
     try:
-        filename = results_filder + idf + '.cable'
+        filename = results_folder + idf + '.cable'
         with open(filename, 'r') as idffile:
             cableraw = getraw(json.loads(idffile.read()))
     except:
         print ("filenotfound")
     try:
-        filename = results_filder + idf + '.interface'
+        filename = results_folder + idf + '.interface'
         with open(filename, 'r') as idffile:
             interfaceraw = getraw(json.loads(idffile.read()))
     except:
         print ("filenotfound")
     try:
-        filename = results_filder + idf + '.interfacebrie'
+        filename = results_folder + idf + '.interfacebrie'
         with open(filename, 'r') as idffile:
             intbriraw = getraw(json.loads(idffile.read()))
     except:
         print ("filenotfound")
     try:
-        filename = results_filder + idf + '.macaddress'
+        filename = results_folder + idf + '.macaddress'
         with open(filename, 'r') as idffile:
             macraw = getraw(json.loads(idffile.read()))
     except:
         print ("filenotfound")
     try:
-        filename = results_filder + idf + '.poe'
+        filename = results_folder + idf + '.poe'
         with open(filename, 'r') as idffile:
             poeraw = getraw(json.loads(idffile.read()))
     except:
@@ -338,31 +339,31 @@ for mdf in mdf_lst:
     int_stat = None
     Cbldiag = None
     try:
-        filename = results_filder + mdf + '.cable'
+        filename = results_folder + mdf + '.cable'
         with open(filename, 'r') as idffile:
             cableraw = getraw(json.loads(idffile.read()))
     except:
         print ("filenotfound")
     try:
-        filename = results_filder + mdf + '.interface'
+        filename = results_folder + mdf + '.interface'
         with open(filename, 'r') as idffile:
             interfaceraw = getraw(json.loads(idffile.read()))
     except:
         print ("filenotfound")
     try:
-        filename = results_filder + mdf + '.interfacebrie'
+        filename = results_folder + mdf + '.interfacebrie'
         with open(filename, 'r') as idffile:
             intbriraw = getraw(json.loads(idffile.read()))
     except:
         print ("filenotfound")
     try:
-        filename = results_filder + mdf + '.macaddress'
+        filename = results_folder + mdf + '.macaddress'
         with open(filename, 'r') as idffile:
             macraw = getraw(json.loads(idffile.read()))
     except:
         print ("filenotfound")
     try:
-        filename = results_filder + mdf + '.poe'
+        filename = results_folder + mdf + '.poe'
         with open(filename, 'r') as idffile:
             poeraw = getraw(json.loads(idffile.read()))
     except:
