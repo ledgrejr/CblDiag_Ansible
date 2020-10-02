@@ -3,7 +3,7 @@
 import os
 import sys
 vendor_dir = os.path.join('../', 'py_libs/')
-
+sys.path.append(vendor_dir)
 import requests
 import json
 import configparser
