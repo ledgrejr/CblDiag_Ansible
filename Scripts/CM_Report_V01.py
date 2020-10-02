@@ -301,7 +301,6 @@ for mdfs in (inv_dict['children']['mdf']['hosts']):
 for idf in idf_lst:
     try:
         filename = results_folder + idf + '.cable'
-        print (filename)
         with open(filename, 'r') as idffile:
             cableraw = getraw(json.loads(idffile.read()))
         if cableraw == 'skipped':
@@ -367,40 +366,63 @@ for mdf in mdf_lst:
     Cbldiag = None
     try:
         filename = results_folder + mdf + '.cable'
-        with open(filename, 'r') as idffile:
-            cableraw = getraw(json.loads(idffile.read()))
+        with open(filename, 'r') as mdffile:
+            cableraw = getraw(json.loads(mdffile.read()))
+        if cableraw == 'skipped':
+            print ('[-] Cable Test skipped for {}'.format (mdf))
+            break
+        else:
+            cabldict = cbldiag_parse(cableraw)
     except:
         print ("filenotfound")
     try:
         filename = results_folder + mdf + '.interface'
-        with open(filename, 'r') as idffile:
-            interfaceraw = getraw(json.loads(idffile.read()))
+        with open(filename, 'r') as mdffile:
+            interfaceraw = getraw(json.loads(mdffile.read()))
+        if interfaceraw == 'skipped':
+            print ('[-] Show Interface skipped for {}'.format (mdf))
+            break
+        else:
+            int_dict = interface_parse(interfaceraw)
     except:
         print ("filenotfound")
     try:
         filename = results_folder + mdf + '.interfacebrie'
-        with open(filename, 'r') as idffile:
-            intbriraw = getraw(json.loads(idffile.read()))
+        with open(filename, 'r') as mdffile:
+            intbriraw = getraw(json.loads(mdffile.read()))
+        if intbriraw == 'skipped':
+            print ('[-] Show interface Brief skipped for {}'.format (mdf))
+            break
+        else:
+            int_brief_dict = interfacebrief_parse(intbriraw)
     except:
         print ("filenotfound")
     try:
         filename = results_folder + mdf + '.macaddress'
-        with open(filename, 'r') as idffile:
-            macraw = getraw(json.loads(idffile.read()))
+        with open(filename, 'r') as mdffile:
+            macraw = getraw(json.loads(mdffile.read()))
+        if macraw == 'skipped':
+            print ('[-] Show mac-address skipped for {}'.format (mdf))
+            break
+        else:
+            macadd_dict = macaddress_parse(macraw)
     except:
         print ("filenotfound")
     try:
         filename = results_folder + mdf + '.poe'
-        with open(filename, 'r') as idffile:
-            poeraw = getraw(json.loads(idffile.read()))
+        with open(filename, 'r') as mdffile:
+            poeraw = getraw(json.loads(mdffile.read()))
+        if poeraw == 'skipped':
+            print ('[-] Show mac-address skipped for {}'.format (mdf))
+            break
+        else:
+            poe_dict = poe_parse(poeraw)
     except:
         print ("filenotfound")
-    cabldict = cbldiag_parse(cableraw)
-    macadd_dict = macaddress_parse(macraw)
-    int_dict = interface_parse(interfaceraw)
-    int_brief_dict = interfacebrief_parse(intbriraw)
-    poe_dict = poe_parse(poeraw)
-    final_dict[mdf] = combine_dict(cabldict,macadd_dict,int_dict,int_brief_dict,poe_dict)
+    try:
+        final_dict[mdf] = combine_dict(cabldict,macadd_dict,int_dict,int_brief_dict,poe_dict)
+    except:
+        print ('[-] Missing data for {}'.format(mdf))
 with open(raw_file,'w') as y:
     y.write(json.dumps(final_dict,indent=2))
 
