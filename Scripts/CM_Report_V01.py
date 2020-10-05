@@ -307,9 +307,10 @@ for mdfs in (inv_dict['children']['mdf']['hosts']):
 for idf in idf_lst:
     #try:
     filename = results_folder + idf + '.cable'
-    print(filename)
+    
     with open(filename, 'r') as idffile:
         cableraw = getraw(json.loads(idffile.read()))
+        print('[+] opening'.format(filename))
     if cableraw == 'skipped':
         print ('[-] Cable Test skipped for {}'.format (idf))
         break
@@ -319,9 +320,10 @@ for idf in idf_lst:
     #    print ("filenotfound")
     try:
         filename = results_folder + idf + '.interface'
-        print(filename)
+
         with open(filename, 'r') as idffile:
             interfaceraw = getraw(json.loads(idffile.read()))
+            print('[+] opening'.format(filename))
         if interfaceraw == 'skipped':
             print ('[-] Show Interface skipped for {}'.format (idf))
             break
@@ -331,9 +333,10 @@ for idf in idf_lst:
         print ("filenotfound")
     try:
         filename = results_folder + idf + '.interfacebrie'
-        print(filename)
+
         with open(filename, 'r') as idffile:
             intbriraw = getraw(json.loads(idffile.read()))
+            print('[+] opening'.format(filename))
         if intbriraw == 'skipped':
             print ('[-] Show interface Brief skipped for {}'.format (idf))
             break
@@ -345,6 +348,7 @@ for idf in idf_lst:
         filename = results_folder + idf + '.macaddress'
         with open(filename, 'r') as idffile:
             macraw = getraw(json.loads(idffile.read()))
+            print('[+] opening'.format(filename))
         if macraw == 'skipped':
             print ('[-] Show mac-address skipped for {}'.format (idf))
             break
@@ -356,6 +360,7 @@ for idf in idf_lst:
         filename = results_folder + idf + '.poe'
         with open(filename, 'r') as idffile:
             poeraw = getraw(json.loads(idffile.read()))
+            print('[+] opening'.format(filename))
         if poeraw == 'skipped':
             print ('[-] Show mac-address skipped for {}'.format (idf))
             break
