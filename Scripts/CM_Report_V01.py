@@ -269,7 +269,7 @@ inv_folder = '../Inv/'
 # Parse Command Line Arguments
 parser = argparse.ArgumentParser()
 parser = argparse.ArgumentParser(
-        description='Basic Discription: This script will use Aruba Central APIs to generate yaml invintory with hostname, ports, and mgmt ip for THD stores')
+        description='Basic Discription: Script to generate CSV report from the output of Ansible CableDiag playbook')
 #group set up for further development
 group = parser.add_mutually_exclusive_group(required=True)
 group.add_argument("-i","--invintory", help="Input file", type=str)
