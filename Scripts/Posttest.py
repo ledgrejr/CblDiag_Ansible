@@ -107,7 +107,7 @@ for idf in idf_lst:
     #print (prefilename)
     postfilename = results_folder + idf + '.posttest'
     #print (postfilename)
-    #try:
+    try:
         with open(prefilename,'r') as prefile:
             preraw = getraw(json.loads(prefile.read()))
     
