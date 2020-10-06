@@ -110,4 +110,4 @@ for idf in idfs:
     preparsed = interfacebrief_parse(preraw)
     postparsed = interfacebrief_parse(postraw)
     for port in preparsed:
-        print('Switch {} port {} Pre-status {} post status {}'.format (idf, port, preparsed[port]['Status'],postparsed[port]['Status']}
+        print('Switch {} port {} Pre-status {} post status {}'.format (idf, port, preparsed[port]['Status'],postparsed[port]['Status'])
