@@ -90,7 +90,8 @@ except:
     exit()
 
 
-
+rep = open(rep_file,'w')
+rep.write('REPORT FILE for {} pre and POS checks'.format(inv_file))
 inv_dict = devlst['all']
 
 idf_lst = []
@@ -126,6 +127,8 @@ for idf in idf_lst:
     #print (preparsed)
     postparsed = interfacebrief_parse(postraw)
     #print (postparsed)
+    
+
     for port in preparsed:
 
-        print('Switch {:12} port {:15} Pre-status {:>5} post status {:>5}'.format (idf, port, preparsed[port]['Status'],postparsed[port]['Status']))
+        rep.write('Switch {:12} port {:15} Pre {:>5} Post {:>5}'.format (idf, port, preparsed[port]['Status'],postparsed[port]['Status']))
