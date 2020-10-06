@@ -40,7 +40,7 @@
       ignore_errors: true
       register: ping
 
-    - name: Execute inital show interface  commands
+    - name: Execute inital show interface commands
       cli_command:
         command: "show interface brief"
       register: SwitchData
@@ -50,3 +50,7 @@
       copy:
         content: "{{SwitchData}}"
         dest: "Results/{{inventory_hostname}}.posttest"
+
+    - name: Test Reporting 
+      shell: python3 Scripts/Posttest.py
+      ignore_errors: true
