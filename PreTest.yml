@@ -11,16 +11,13 @@
 
     - name: Execute inital test commands
       cli_command:
-        command: "{{ item }}"
+        command: "show interface brief"
       register: SwitchData
-      with_items:
-        - "show mac-address"
-        - "show interface"
     
     - name: Output to macaddress file
       copy:
-        content: "{{SwitchData.stdout}}"
-        dest: "Results/{{inventory_hostname}}.swinfo"
+        content: "{{SwitchData}}"
+        dest: "Results/{{inventory_hostname}}.pretest"
            
 - hosts: idf
   gather_facts: False
@@ -32,15 +29,12 @@
     ansible_python_interpreter: /usr/bin/python
   tasks:
 
-    - name: Execute inital test commands
+    - name: Execute inital show interface  commands
       cli_command:
-        command: "{{ item }}"
+        command: "show interface brief"
       register: SwitchData
-      with_items:
-        - "show mac-address"
-        - "show interface"
     
-    - name: Output to macaddress file
+    - name: output file
       copy:
-        content: "{{SwitchData.stdout}}"
-        dest: "Results/{{inventory_hostname}}.swinfo"
+        content: "{{SwitchData}}"
+        dest: "Results/{{inventory_hostname}}.pretest"
