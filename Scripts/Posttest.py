@@ -110,16 +110,17 @@ for idf in idf_lst:
     try:
         with open(prefilename,'r') as prefile:
             preraw = getraw(json.loads(prefile.read()))
-    
     except:
         print('[!] Missing Pre test file. SKIPPING {}'.format(prefilename))
         continue
-
     try:
         with open(postfilename,'r') as postfile:
             postraw = getraw(json.loads(postfile.read()))
     except:
         print('[!] Missing post test file. SKIPPING {}'.format(postfilename))
+        continue
+    if postraw == 'skipped' or preraw == "skipped":
+        print ('Ansible skipped this test. Most likely device did not respond to ping. SKIPPING {}'.format (idf))
         continue
     preparsed = interfacebrief_parse(preraw)
     print (preparsed)
