@@ -75,10 +75,10 @@ args = parser.parse_args()
 # gather files. If no output file is selected, will write with invintorey filename (as csv and raw.json)
 inv_file = args.invintory
 if args.file:
-    rep_file = '../Reports/Tests' + args.file
+    rep_file = '../Reports/Tests/' + args.file
 
 else:
-    rep_file = '../Reports/Tests' + inv_file.replace('.yml','.csv')
+    rep_file = '../Reports/Tests/' + inv_file.replace('.yml','.txt')
 
 
 inv_path = inv_folder + inv_file
