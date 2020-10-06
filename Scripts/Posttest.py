@@ -1,5 +1,13 @@
 #! /usr/bin/env python3
 
+import os
+import sys
+vendor_dir = os.path.join('../', 'py_libs/')
+sys.path.append(vendor_dir)
+import yaml 
+import json
+import csv
+import argparse
 
 # pull raw data from ansible output
 def getraw(rawdata):
@@ -92,8 +100,9 @@ for mdfs in (inv_dict['children']['mdf']['hosts']):
 
 for idf in idfs:
     prefilename = results_folder + idf + '.pretest'
-    prefilename = results_folder + idf + '.posttest'
+    postfilename = results_folder + idf + '.posttest'
     preraw = getraw(prefilename)
     postraw = getraw(postfilename)
     preparsed = interfacebrief_parse(preraw)
     postparsed = interfacebrief_parse(postraw)
+    print(postparsed.keys())
