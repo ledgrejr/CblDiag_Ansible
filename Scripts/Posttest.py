@@ -29,7 +29,7 @@ def interfacebrief_parse(intbriefdata):
     sw_brief_Int_Dict = {}
     for u in intbriefdata:
         u = u.replace('|','')
-        #print (u)
+        print (u)
         u = u.replace('.','')
         portBrieDict = {}
         #print (u)
@@ -102,12 +102,13 @@ for mdfs in (inv_dict['children']['mdf']['hosts']):
 for idf in idf_lst:
 
     prefilename = results_folder + idf + '.pretest'
-    print (prefilename)
+    #print (prefilename)
     postfilename = results_folder + idf + '.posttest'
-    print (postfilename)
+    #print (postfilename)
     try:
         with open(prefilename,'r') as prefile:
             preraw = getraw(json.loads(prefile))
+
     except:
         print('[!] Missing Pre test file. SKIPPING')
         continue
@@ -118,6 +119,8 @@ for idf in idf_lst:
         print('[!] Missing post test file. SKIPPING')
         continue
     preparsed = interfacebrief_parse(preraw)
+    print (preparsed)
     postparsed = interfacebrief_parse(postraw)
+    print (postparsed)
     for port in preparsed:
         print('Switch {} port {} Pre-status {} post status {}'.format (idf, port, preparsed[port]['Status'],postparsed[port]['Status']))
