@@ -1,0 +1,40 @@
+---
+- hosts: mdf
+  gather_facts: False
+  vars:
+    ansible_connection: network_cli
+    ansible_network_os: arubaoss
+    ansible_user: <USERNAME>
+    ansible_password: <PASSWORD>
+    ansible_python_interpreter: /usr/bin/python
+  tasks:
+
+    - name: Execute inital test commands
+      cli_command:
+        command: "show interface brief"
+      register: SwitchData
+    
+    - name: Output to macaddress file
+      copy:
+        content: "{{SwitchData}}"
+        dest: "Results/{{inventory_hostname}}.posttest"
+           
+- hosts: idf
+  gather_facts: False
+  vars:
+    ansible_connection: network_cli
+    ansible_network_os: arubaoss
+    ansible_user: <USERNAME>
+    ansible_password: <PASSWORD>
+    ansible_python_interpreter: /usr/bin/python
+  tasks:
+
+    - name: Execute inital show interface  commands
+      cli_command:
+        command: "show interface brief"
+      register: SwitchData
+    
+    - name: output file
+      copy:
+        content: "{{SwitchData}}"
+        dest: "Results/{{inventory_hostname}}.posttest"
