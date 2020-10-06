@@ -99,7 +99,8 @@ for idfs in (inv_dict['children']['idf']['hosts']):
 for mdfs in (inv_dict['children']['mdf']['hosts']):
     mdf_lst.append(mdfs)
 
-for idf in idfs:
+for idf in idf_lst:
+
     prefilename = results_folder + idf + '.pretest'
     print (prefilename)
     postfilename = results_folder + idf + '.posttest'
