@@ -11,7 +11,7 @@ import argparse
 
 # pull raw data from ansible output
 def getraw(rawdata):
-    # print (rawdata['stdout_lines'])
+    print (rawdata['stdout_lines'])
     #print (rawdata['skipped'])
     try:
         return((rawdata['stdout_lines']))
