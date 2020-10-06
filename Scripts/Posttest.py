@@ -91,7 +91,7 @@ except:
 
 
 rep = open(rep_file,'w')
-rep.write('REPORT FILE for {} pre and POS checks'.format(inv_file))
+rep.write('REPORT FILE for {} Pre and Post checks\n'.format(inv_file))
 inv_dict = devlst['all']
 
 idf_lst = []
