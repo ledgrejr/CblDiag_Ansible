@@ -108,16 +108,16 @@ for idf in idf_lst:
     postfilename = results_folder + idf + '.posttest'
     #print (postfilename)
     #try:
-    with open(prefilename,'r') as prefile:
-        preraw = getraw(json.loads(prefile))
-    '''
+        with open(prefilename,'r') as prefile:
+            preraw = getraw(json.loads(prefile.read()))
+    
     except:
         print('[!] Missing Pre test file. SKIPPING {}'.format(prefilename))
         continue
-    '''
+
     try:
         with open(postfilename,'r') as postfile:
-            postraw = getraw(json.loads(postfile))
+            postraw = getraw(json.loads(postfile.read()))
     except:
         print('[!] Missing post test file. SKIPPING {}'.format(postfilename))
         continue
