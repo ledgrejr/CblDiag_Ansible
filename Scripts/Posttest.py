@@ -101,10 +101,12 @@ for mdfs in (inv_dict['children']['mdf']['hosts']):
 for idf in idfs:
     try:
         prefilename = results_folder + idf + '.pretest'
+        print (prefilename)
     except:
         print ('[!] Missing pre test file')
         continue
     postfilename = results_folder + idf + '.posttest'
+    print (postfilename)
     preraw = getraw(prefilename)
     postraw = getraw(postfilename)
     preparsed = interfacebrief_parse(preraw)
