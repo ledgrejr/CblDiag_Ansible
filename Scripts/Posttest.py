@@ -90,6 +90,7 @@ except:
 
 
 inv_dict = devlst['all']
+
 idf_lst = []
 mdf_lst = []
 final_dict = {}
@@ -99,16 +100,22 @@ for mdfs in (inv_dict['children']['mdf']['hosts']):
     mdf_lst.append(mdfs)
 
 for idf in idfs:
-    try:
-        prefilename = results_folder + idf + '.pretest'
-        print (prefilename)
-    except:
-        print ('[!] Missing pre test file')
-        continue
+    prefilename = results_folder + idf + '.pretest'
+    print (prefilename)
     postfilename = results_folder + idf + '.posttest'
     print (postfilename)
-    preraw = getraw(prefilename)
-    postraw = getraw(postfilename)
+    try:
+        with open(prefilename,'r') as prefile:
+            preraw = getraw(json.loads(prefile))
+    except:
+        print('[!] Missing Pre test file. SKIPPING')
+        continue
+    try:
+        with open(postfilename,'r') as postfile:
+            postraw = getraw(json.loads(postfile))
+    except:
+        print('[!] Missing post test file. SKIPPING')
+        continue
     preparsed = interfacebrief_parse(preraw)
     postparsed = interfacebrief_parse(postraw)
     for port in preparsed:
