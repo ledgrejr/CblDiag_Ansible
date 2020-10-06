@@ -50,7 +50,3 @@
       copy:
         content: "{{SwitchData}}"
         dest: "Results/{{inventory_hostname}}.posttest"
-
-    - name: Test Reporting 
-      shell: python3 Scripts/Posttest.py
-      ignore_errors: true
