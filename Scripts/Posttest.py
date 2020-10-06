@@ -131,4 +131,4 @@ for idf in idf_lst:
 
     for port in preparsed:
 
-        rep.write('Switch {:12} port {:15} Pre {:>5} Post {:>5}'.format (idf, port, preparsed[port]['Status'],postparsed[port]['Status']))
+        rep.write('Switch {:12} port {:15} Pre {:>5} Post {:>5}\n'.format (idf, port, preparsed[port]['Status'],postparsed[port]['Status']))
