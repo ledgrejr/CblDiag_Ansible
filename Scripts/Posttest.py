@@ -110,7 +110,7 @@ for idf in idf_lst:
     #try:
     with open(prefilename,'r') as prefile:
         preraw = getraw(json.loads(prefile))
-            '''
+    '''
     except:
         print('[!] Missing Pre test file. SKIPPING {}'.format(prefilename))
         continue
