@@ -99,10 +99,15 @@ for mdfs in (inv_dict['children']['mdf']['hosts']):
     mdf_lst.append(mdfs)
 
 for idf in idfs:
-    prefilename = results_folder + idf + '.pretest'
+    try:
+        prefilename = results_folder + idf + '.pretest'
+    except:
+        print ('[!] Missing pre test file')
+        continue
     postfilename = results_folder + idf + '.posttest'
     preraw = getraw(prefilename)
     postraw = getraw(postfilename)
     preparsed = interfacebrief_parse(preraw)
     postparsed = interfacebrief_parse(postraw)
-    print(postparsed.keys())
+    for port in preparsed:
+        print('Switch {} port {} Pre-status {} post status {}'.format (idf, port, preparsed[port]['Status'],postparsed[port]['Status']}
