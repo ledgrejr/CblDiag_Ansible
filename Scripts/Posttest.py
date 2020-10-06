@@ -123,8 +123,9 @@ for idf in idf_lst:
         print ('Ansible skipped this test. Most likely device did not respond to ping. SKIPPING {}'.format (idf))
         continue
     preparsed = interfacebrief_parse(preraw)
-    print (preparsed)
+    #print (preparsed)
     postparsed = interfacebrief_parse(postraw)
-    print (postparsed)
+    #print (postparsed)
     for port in preparsed:
-        print('Switch {} port {} Pre-status {} post status {}'.format (idf, port, preparsed[port]['Status'],postparsed[port]['Status']))
+
+        print('Switch {:12} port {:5} Pre-status {:>5} post status {:>5}'.format (idf, port, preparsed[port]['Status'],postparsed[port]['Status']))
