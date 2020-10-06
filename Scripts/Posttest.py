@@ -14,9 +14,11 @@ def getraw(rawdata):
     print (rawdata)
     #print (rawdata['skipped'])
     try:
+        print('Raw data found')
         return((rawdata['stdout_lines']))
     except:
         try:
+            print('Raw data missing')
             if rawdata['skipped'] == True:
                 return ("skipped")
         except: 
@@ -110,13 +112,13 @@ for idf in idf_lst:
             preraw = getraw(json.loads(prefile))
 
     except:
-        print('[!] Missing Pre test file. SKIPPING')
+        print('[!] Missing Pre test file. SKIPPING {}'.format(prefilename))
         continue
     try:
         with open(postfilename,'r') as postfile:
             postraw = getraw(json.loads(postfile))
     except:
-        print('[!] Missing post test file. SKIPPING')
+        print('[!] Missing post test file. SKIPPING {}'.format(postfilename))
         continue
     preparsed = interfacebrief_parse(preraw)
     print (preparsed)
