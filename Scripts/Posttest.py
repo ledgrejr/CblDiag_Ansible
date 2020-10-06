@@ -14,11 +14,11 @@ def getraw(rawdata):
     print (rawdata)
     #print (rawdata['skipped'])
     try:
-        print('Raw data found')
+        #print('Raw data found')
         return((rawdata['stdout_lines']))
     except:
         try:
-            print('Raw data missing')
+            #print('Raw data missing')
             if rawdata['skipped'] == True:
                 return ("skipped")
         except: 
@@ -31,7 +31,7 @@ def interfacebrief_parse(intbriefdata):
     sw_brief_Int_Dict = {}
     for u in intbriefdata:
         u = u.replace('|','')
-        print (u)
+        #print (u)
         u = u.replace('.','')
         portBrieDict = {}
         #print (u)
@@ -120,7 +120,7 @@ for idf in idf_lst:
         print('[!] Missing post test file. SKIPPING {}'.format(postfilename))
         continue
     if postraw == 'skipped' or preraw == "skipped":
-        print ('Ansible skipped this test. Most likely device did not respond to ping. SKIPPING {}'.format (idf))
+        print ('[*] Ansible skipped this test. Most likely device did not respond to ping. SKIPPING {}'.format (idf))
         continue
     preparsed = interfacebrief_parse(preraw)
     #print (preparsed)
@@ -128,4 +128,4 @@ for idf in idf_lst:
     #print (postparsed)
     for port in preparsed:
 
-        print('Switch {:12} port {:5} Pre-status {:>5} post status {:>5}'.format (idf, port, preparsed[port]['Status'],postparsed[port]['Status']))
+        print('Switch {:12} port {:15} Pre-status {:>5} post status {:>5}'.format (idf, port, preparsed[port]['Status'],postparsed[port]['Status']))
