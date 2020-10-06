@@ -9,10 +9,16 @@
     ansible_python_interpreter: /usr/bin/python
   tasks:
 
+    - name: ping tests
+      shell: ping -c 1 {{ansible_host}}
+      ignore_errors: true
+      register: ping
+
     - name: Execute inital test commands
       cli_command:
         command: "show interface brief"
       register: SwitchData
+      when: ping.stdout.find('1 received')!= -1
     
     - name: Output to macaddress file
       copy:
@@ -29,10 +35,16 @@
     ansible_python_interpreter: /usr/bin/python
   tasks:
 
+    - name: ping tests
+      shell: ping -c 1 {{ansible_host}}
+      ignore_errors: true
+      register: ping
+
     - name: Execute inital show interface  commands
       cli_command:
         command: "show interface brief"
       register: SwitchData
+      when: ping.stdout.find('1 received')!= -1
     
     - name: output file
       copy:
