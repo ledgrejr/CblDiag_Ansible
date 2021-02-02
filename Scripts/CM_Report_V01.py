@@ -59,8 +59,9 @@ def cbldiag_parse(cbldata):
         if '1-2' in q:
             qsp = q.split()
             port = qsp[0]
+            portdict[port] = []
             porttup = qsp[1], qsp[2], qsp[3]
-            portdict[port] = (porttup)
+            portdict[port].append(porttup)
             # print (qsp)
         elif '3-6' in q or '4-5' in q or '7-8' in q:
             qsp = q.split()
