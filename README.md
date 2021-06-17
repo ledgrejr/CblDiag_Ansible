@@ -1,8 +1,9 @@
 # CblDiag_Ansible
-### This houses the fraimwork used to automate a Cable Diagnostic test from Aruba HPE AOSS Swtiches managed in central. The process is:
-1. InvMake script is ran to generate Ansible Invintory
-1. CableDiag_v01 playbook is ran via Ansible 
-1. CM_Report_v01 takes raw data from Ansible playbook and compiles into CSV report. 
+## This houses the framework used to automate cable diagnostic tests on Aruba HPE AOSS swtiches managed in Aruba Central.
+### The process is:
+###   InvMake script is ran to generate Ansible Invintory
+###   CableDiag_v01 playbook is ran via Ansible 
+###   CM_Report_v01 takes raw data from Ansible playbook and compiles into CSV report. 
 
 
 ## Change Log: 
